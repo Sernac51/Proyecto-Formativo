@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">Prueba de vista</h1>
+        <h1 class="text-center">Prueba de vista y diseño</h1>
     </div>
 </body>
 </html>
