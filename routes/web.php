@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\controllers\UsuariosController;
-use App\Http\controllers\ProductsController;
+use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------

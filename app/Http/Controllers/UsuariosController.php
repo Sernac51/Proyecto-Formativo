@@ -26,7 +26,11 @@ class UsuariosController extends Controller
      */
     public function create()
     {
-        //
+        //consultar proyectos
+        $usuarios = Usuarios::orderBy('nombre', 'asc')
+                                ->get();
+        //enviar a la vista
+        // return view('usuarios.insert', compact('usuarios'));
     }
 
     /**
