@@ -30,7 +30,7 @@ class UsuariosController extends Controller
         $usuarios = Usuarios::orderBy('nombre', 'asc')
                                 ->get();
         //enviar a la vista
-        // return view('usuarios.insert', compact('usuarios'));
+        return view('usuarios.insert', compact('usuarios'));
     }
 
     /**

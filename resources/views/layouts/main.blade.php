@@ -9,9 +9,6 @@
     <title>Vista prueba</title>
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-center">Prueba de vista y diseño</h1>
-    </div>
-    <a href="{{ route('usuarios.index')}}" class="btn btn-info">Index</a>
+   
 </body>
 </html>

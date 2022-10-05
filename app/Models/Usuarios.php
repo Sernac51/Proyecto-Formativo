@@ -8,6 +8,7 @@ class Usuarios extends Model
 {
     protected $fillable = [
         'nombre',
-        'apellido'
+        'apellido',
+        'contraseña'
     ];
 }
