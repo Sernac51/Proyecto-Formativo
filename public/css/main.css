@@ -1,0 +1,20 @@
+.colorN{
+    background-color:#FFAB4A;
+}
+#prueba{
+    background-color: #FFFCEC;
+}
+#aj{
+    color:#FFAB4A;
+    font-size: 100px;
+}
+
+body{
+    background-color: #000000;
+}
+p{
+    padding-bottom: 120px;
+    padding-top: 90px;
+    padding-left: 300px;
+    padding-right: 300px;
+}

@@ -14,7 +14,7 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
-
+            usuarios
             <!-- Email Address -->
             <div>
                 <x-label for="email" :value="__('Email')" />
@@ -50,6 +50,12 @@
                 <x-button class="ml-3">
                     {{ __('Login') }}
                 </x-button>
+            </div>
+            <div class="mt-4">
+                ¿No está registrado?
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                    {{ __('Regístrese') }}
+                </a>
             </div>
         </form>
     </x-auth-card>

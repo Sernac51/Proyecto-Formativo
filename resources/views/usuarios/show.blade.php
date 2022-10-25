@@ -10,19 +10,15 @@
                 <tbody>
                     <tr>
                         <td class="fw-bold">Nombre</td>
-                        <td>{{ $products->nombre}}</td>
+                        <td>{{ $user->name}}</td>
                     </tr>
                     <tr>
-                        <td class="fw-bold">Precio unitario</td>
-                        <td>{{ $products->precio}}</td>
-                    </tr>
-                    <tr>
-                        <td class="fw-bold">Cantidad</td>
-                        <td>{{ $products->Cantidad}}</td>
+                        <td class="fw-bold">Correo Electronico</td>
+                        <td>{{ $user->email}}</td>
                     </tr>
                 </tbody>
             </table>
-            <a href="{{ route('products.index') }}" class="btn btn-secondary">Volver</a>
+            <a href="{{ route('usuarios.index') }}" class="btn btn-secondary">Volver</a>
         </div>
 
     </div>

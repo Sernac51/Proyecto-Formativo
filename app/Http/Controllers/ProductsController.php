@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\products;
 use Illuminate\Http\Request;
+use Gate;
 
 class ProductsController extends Controller
 {
@@ -12,9 +13,17 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Products::all();
+        if($request)
+        {
+            $query = $request->buscar;
+            $products = Products::where('nombre','like', '%'. $query . '%')
+                                    ->orderBy('nombre','asc')
+                                    ->paginate(5);
+            return view('products.index', compact('products','query'));
+        }
+        $products = Products::orderBy('nombre', 'asc')->paginate(6);
 
         return view('products.index', compact('products'));
     }
@@ -97,6 +106,10 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
+        if(Gate::denies('administrador'))
+        {
+            return redirect()->route('products.index');
+        }
         $products = products::findOrFail($id);
         $products->delete();
         return redirect()->route('products.index');
