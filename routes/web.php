@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\VentasController;
+use App\Http\Controllers\CategoriasController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +30,7 @@ require __DIR__.'/auth.php';
 Route::resource('products',ProductsController::class)->middleware('auth');
 Route::resource('usuarios',UsuariosController::class)->middleware('auth');
 Route::resource('ventas',VentasController::class)->middleware('auth');
+Route::resource('categorias',CategoriasController::class)->middleware('auth');
+
 
 

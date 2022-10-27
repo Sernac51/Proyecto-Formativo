@@ -31,13 +31,19 @@
                 <div class="offcanvas-body ">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 fs-5">
                         <li>
+                            <a class="dropdown-item rounded mb-2" href="{{ route('categorias.index') }}">Categorias</a>
+                        </li>
+                        <li>
                             <a class="dropdown-item rounded mb-2" href="{{ route('products.index') }}">Productos</a>
                         </li>
+                        <a class="dropdown-item rounded mb-2" href="{{ route('ventas.index') }}">Ventas</a>
                         <!-- @can(['administrador']) -->
                         <li>
                             <a class="dropdown-item rounded mb-2" href="{{ route('usuarios.index') }}">Usuarios</a>
                         </li>
-                         <!-- @endcan -->                         
+                         <!-- @endcan -->  
+                         <li>
+                        </li>                       
                     </ul>
                 </div>
                 <li class="navbar nav-item btn-group dropup  ms-3">

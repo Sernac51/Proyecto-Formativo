@@ -43,9 +43,7 @@
                     <td class="col-3">  
                         <div class="form-floating mb-3">
                             <input type="number" class="form-control" id="subtotal" name="subtotal" placeholder="Subtotal" disabled>
-                            <li>
-                                <a class="dropdown-item rounded mb-2" href="{{ route('ventas.index') }}">Ventas</a>
-                            </li>    <label for="subtotal">Subtotal</label>
+                            <label for="subtotal">Subtotal</label>
                         </div>
                     </td>
                 </form>

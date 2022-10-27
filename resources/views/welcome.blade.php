@@ -17,10 +17,10 @@
         </div>
         <div class="contauner-fliud">
             <main class="mx-3">
-                <p class="fs-4 fw-lighter pb-5">AJ aluminio y decoración es una empresa que se preocupa por ofrecer productos de calidad aus clientes.</p>
+                <p class="fs-4 fw-lighter pb-5">AJ aluminio y decoración es una empresa que se preocupa por ofrecer productos de calidad a sus clientes.</p>
                     <div class="row">
                         <div>
-                            <a href="{{ route('usuarios.index')}}" class="btn btn-outline-warning fs-2 w-25" >Ingresar</a> 
+                            <a href="{{ route('ventas.index')}}" class="btn btn-outline-warning fs-2 w-25" >Ingresar</a> 
                         </div>   
                     </div>  
             </main>
