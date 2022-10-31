@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\products;
 use Illuminate\Http\Request;
 use Gate;
+use App\Models\Categorias;
 
 class ProductsController extends Controller
 {
@@ -13,8 +14,9 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Categoria $id)
     {
+        $categoria = Categorias::findOrFail($id);
         if($request)
         {
             $query = $request->buscar;
