@@ -18,11 +18,11 @@
             <label for="Cantidad">Cantidad</label>
         </div>
         <div class="form-floating mb-3">
-            <select class="form-select" id="categoria_id" name="categoria_id" required>
+            <select class="form-select" id="categorias" name="categorias" required>
                 <option selected >Selecione...</option>
-                    {{-- @foreach($categorias as $item)
+                    @foreach($categorias as $item)
                         <option value="{{ $item->id }}">{{ $item->nombre }}</option>
-                    @endforeach --}}
+                    @endforeach
             </select>
             <label for="proyecto_id">Categoria</label>
             {{-- <div class="invalid-feedback">

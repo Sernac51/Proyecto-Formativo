@@ -15,7 +15,15 @@
                 <img src="{{ asset('images/tornilleria.png') }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Tornilleria</h5>
-                    <a href="#" class="btn btn-primary">Ver</a>
+                    {{-- @foreach ($categorias as $item)
+                    <tr>
+                        <td>{{ $item->nombre}}</td>
+                        <td class="d-flex">
+                            <a href="{{ route('categorias.show', $item->id) }}" class="btn btn-primary">Ver</a>
+                        </td>
+                    </tr>
+                @endforeach --}}
+                    <a href="" class="btn btn-primary">Ver</a>
                 </div>
             </div>
         </div>

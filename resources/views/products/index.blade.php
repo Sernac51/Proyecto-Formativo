@@ -10,13 +10,13 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    @can(['administrador'])
+    {{-- @can(['administrador']) --}}
         <div class="mt-3">
             <a href="{{ route('products.create') }}" class="btn btn-dark">
                 Registrar nuevo producto
             </a>
         </div>
-    @endcan
+    {{-- @endcan --}}
 
     <div class="my-3">
         @if(count($products) > 0)

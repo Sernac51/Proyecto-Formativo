@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\products;
+use App\Models\Categorias;
 use Illuminate\Http\Request;
 use Gate;
-use App\Models\Categorias;
+
 
 class ProductsController extends Controller
 {
@@ -14,7 +15,7 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Categoria $id)
+    public function index(Categorias $id, Request $request)
     {
         $categoria = Categorias::findOrFail($id);
         if($request)
@@ -37,7 +38,11 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('products.insert');
+        //consultar proyectos
+        $categorias = Categorias::orderBy('nombre', 'asc')
+                            ->get();
+        return view('products.insert', compact('categorias'));
+        
     }
 
     /**
@@ -66,8 +71,15 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
+        $products = Products::join('categorias','products.categorias','categorias.id')
+                                            ->select('products.id','products.nombre',
+                                            'categorias.nombre as categoria')
+                                            ->where('products.id',$id)
+                                            ->first();
         $products = products::findOrFail($id);
-        return view('products.show', compact('products'));
+        return view('products.show');
+    
+   
     }
 
     /**
@@ -77,7 +89,7 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   
         $products = Products::findOrFail($id);
         return view('products.edit', compact('products'));
     }
