@@ -18,16 +18,13 @@
             <label for="Cantidad">Cantidad</label>
         </div>
         <div class="form-floating mb-3">
-            <select class="form-select" id="categorias" name="categorias" required>
+            <select class="form-select" id="categorias_id" name="categorias_id" required>
                 <option selected >Selecione...</option>
                     @foreach($categorias as $item)
                         <option value="{{ $item->id }}">{{ $item->nombre }}</option>
                     @endforeach
             </select>
-            <label for="proyecto_id">Categoria</label>
-            {{-- <div class="invalid-feedback">
-                Debe seleccionar un proyecto
-            </div> --}}
+            <label for="categorias_id">Categoria</label>
         </div>
         <button type="submit" class="btn btn-secondary">Guardar</button>
     </form>

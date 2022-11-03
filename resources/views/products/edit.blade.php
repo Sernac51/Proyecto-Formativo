@@ -18,6 +18,15 @@
             <input type="number" class="form-control" id="Cantidad" name="Cantidad" placeholder="Cantidad" value="{{ $products->Cantidad }}">
             <label for="Cantidad">Cantidad</label>
         </div>
+        <div class="form-floating mb-3">
+            <select class="form-select" id="categorias_id" name="categorias_id" required>
+                <option selected >Selecione...</option>
+                    @foreach($categoria as $item)
+                        <option value="{{ $item->id }}" @if($item->id == $products->categorias_id) selected @endif> {{ $item->nombre }}</option>
+                    @endforeach
+            </select>
+            <label for="categorias_id">Categoria</label>
+        </div>
         <button type="submit" class="btn btn-secondary">Guardar</button>
     </form>
 @endsection

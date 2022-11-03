@@ -20,6 +20,10 @@
                         <td class="fw-bold">Cantidad</td>
                         <td>{{ $products->Cantidad}}</td>
                     </tr>
+                    <tr>
+                        <td class="fw-bold">Categoria</td>
+                        <td>{{ $products->categoria}}</td>
+                    </tr>
                 </tbody>
             </table>
             <a href="{{ route('products.index') }}" class="btn btn-secondary">Volver</a>

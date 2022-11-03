@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorias;
+use App\Models\products;
 use Illuminate\Http\Request;
 use Gate;
 use Auth;
@@ -46,13 +47,13 @@ class CategoriasController extends Controller
      * @param  \App\Models\Categorias  $categorias
      * @return \Illuminate\Http\Response
      */
-    public function show( $id)
+    public function show($id)
     {
-        $categorias = Desarrollador::where('categoria_id',$id)
+        $categorias = Categorias::findOrFail($id);
+        $products = Products::where('categorias_id',$id)
                                             ->orderBy('nombre','asc')
                                             ->get();
-        // dd($desarrolladores);
-        return view('products.show');
+        return view('categorias.show', compact('categorias', 'products'));
     }
 
     /**

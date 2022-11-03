@@ -1,23 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use App\Models\products;
 use App\Models\Categorias;
 use Illuminate\Http\Request;
 use Gate;
 
-
 class ProductsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Categorias $id, Request $request)
+    public function index(Request $request)
     {
-        $categoria = Categorias::findOrFail($id);
+        // $categoria = Categorias::findOrFail($id);
         if($request)
         {
             $query = $request->buscar;
@@ -26,8 +29,10 @@ class ProductsController extends Controller
                                     ->paginate(5);
             return view('products.index', compact('products','query'));
         }
+        // Obtener todos los registros 
         $products = Products::orderBy('nombre', 'asc')->paginate(6);
-
+        
+        // enviar a la vista
         return view('products.index', compact('products'));
     }
 
@@ -38,9 +43,14 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //consultar proyectos
+        if(Gate::denies('administrador'))
+        {
+            return redirect()->route('products.index');
+        }
+        //consultar categorias
         $categorias = Categorias::orderBy('nombre', 'asc')
                             ->get();
+        //enviar a la vist
         return view('products.insert', compact('categorias'));
         
     }
@@ -53,12 +63,16 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $nombre = $request->nombre;
-        $precio = $request->precio;
-        $cantidad = $request->Cantidad;
+        /////////////////pendiente aqui////////////////////////////////////////
+        $datosProducts = $request->except('_token');
+        Products::insert($datosProducts);
+
+        // $nombre = $request->nombre;
+        // $precio = $request->precio;
+        // $cantidad = $request->Cantidad;
         
         // echo $request;   
-        Products::create($request->all());
+        // Products::create($request->all());
  
         return redirect()->route('products.index')->with('exito', '¡El registro se ha creado satisfactoriamente!');
     }
@@ -71,13 +85,19 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $products = Products::join('categorias','products.categorias','categorias.id')
-                                            ->select('products.id','products.nombre',
-                                            'categorias.nombre as categoria')
+        /////////////////pendiente aqui////////////////////////////////////////
+        if(Gate::denies('administrador'))
+        {
+            return redirect()->route('products.index');
+        }
+        $products = Products::join('categorias','products.categorias_id','categorias.id')
+                                            ->select('products.id','products.nombre', 
+                                            'products.precio', 'products.Cantidad',
+                                            'categorias.nombre as categorias')
                                             ->where('products.id',$id)
                                             ->first();
-        $products = products::findOrFail($id);
-        return view('products.show');
+        // $products = products::findOrFail($id);
+        return view('products.show', compact('products'));
     
    
     }
@@ -91,7 +111,9 @@ class ProductsController extends Controller
     public function edit($id)
     {   
         $products = Products::findOrFail($id);
-        return view('products.edit', compact('products'));
+        $categoria = Categorias::orderBy('nombre', 'asc')
+                                ->get();
+        return view('products.edit', compact('products', 'categoria'));
     }
 
     /**
@@ -124,7 +146,7 @@ class ProductsController extends Controller
         {
             return redirect()->route('products.index');
         }
-        $products = products::findOrFail($id);
+        $products = Products::findOrFail($id);
         $products->delete();
         return redirect()->route('products.index');
     }

@@ -46,7 +46,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{-- {{ $products->links() }} --}}
+        {{ $products->links() }}
         @else
             <p>La búsqueda no arrojó resultados</p>
         @endif
