@@ -20,7 +20,6 @@ class ProductsController extends Controller
      */
     public function index(Request $request)
     {
-        // $categoria = Categorias::findOrFail($id);
         if($request)
         {
             $query = $request->buscar;
@@ -63,40 +62,30 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        /////////////////pendiente aqui////////////////////////////////////////
         $datosProducts = $request->except('_token');
         Products::insert($datosProducts);
-
-        // $nombre = $request->nombre;
-        // $precio = $request->precio;
-        // $cantidad = $request->Cantidad;
-        
-        // echo $request;   
-        // Products::create($request->all());
  
         return redirect()->route('products.index')->with('exito', '¡El registro se ha creado satisfactoriamente!');
     }
 
     /**
      * Display the specified resource.
-     *
+     *datosDesarrollador
      * @param  \App\Models\products  $products
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        /////////////////pendiente aqui////////////////////////////////////////
         if(Gate::denies('administrador'))
         {
             return redirect()->route('products.index');
         }
-        $products = Products::join('categorias','products.categorias_id','categorias.id')
+        $products = Products::join('categorias','products.categoria_id','categorias.id')
                                             ->select('products.id','products.nombre', 
                                             'products.precio', 'products.Cantidad',
                                             'categorias.nombre as categorias')
                                             ->where('products.id',$id)
                                             ->first();
-        // $products = products::findOrFail($id);
         return view('products.show', compact('products'));
     
    
@@ -111,9 +100,9 @@ class ProductsController extends Controller
     public function edit($id)
     {   
         $products = Products::findOrFail($id);
-        $categoria = Categorias::orderBy('nombre', 'asc')
+        $categorias = Categorias::orderBy('nombre', 'asc') 
                                 ->get();
-        return view('products.edit', compact('products', 'categoria'));
+        return view('products.edit', compact('products', 'categorias'));
     }
 
     /**
@@ -123,14 +112,12 @@ class ProductsController extends Controller
      * @param  \App\Models\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function update( Request $request ,$id)
+    public function update( Request $request, $id)
     {
         $products = Products::findOrFail($id);   
-        // $products->nombre = $request->nombre;
-        // $products->precio = $request->precio;
-        // $products->Cantidad = $request->Cantidad;
-        // $products->save();     
-        $products->update($request->all());
+        $datosProducts = $request->except(['_token','_method']);
+
+        Products::where('id',$id)->update($datosProducts);
         return redirect()->route('products.index')->with('exito', '¡El registro se ha actualizado satisfactoriamente!');
     }
 

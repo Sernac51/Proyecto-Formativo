@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('nombre');
             $table->double('precio',8,2);
             $table->integer('Cantidad');
-            $table->foreignId('categorias_id')->constrained('categorias');
+            $table->foreignId('categoria_id')->constrained('categorias');
             $table->timestamps();
         });
     }
@@ -31,7 +31,7 @@ class CreateProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign('products_categorias_id_foreign');
+            $table->dropForeign('products_categoria_id_foreign');
         });
         Schema::dropIfExists('products');
     }

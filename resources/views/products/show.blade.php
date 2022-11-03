@@ -22,7 +22,7 @@
                     </tr>
                     <tr>
                         <td class="fw-bold">Categoria</td>
-                        <td>{{ $products->categoria}}</td>
+                        <td>{{ $products->categorias}}</td>
                     </tr>
                 </tbody>
             </table>

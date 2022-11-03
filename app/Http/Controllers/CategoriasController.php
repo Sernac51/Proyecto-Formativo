@@ -15,9 +15,21 @@ class CategoriasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {  
-        return view('categorias.index');
+        if($request)
+        {
+            $query = $request->buscar;
+            $categorias = Categorias::where('nombre','like', '%'. $query . '%')
+                                    ->orderBy('nombre','asc')
+                                    ->paginate(5);
+            return view('categorias.index', compact('categorias','query'));
+        }
+        // Obtener todos los registros 
+        $categorias = Categorias::orderBy('nombre','asc')->paginate(6);
+
+        // enviar a la vista
+        return view('categorias.index', compact('categorias'));
     }
 
     /**
@@ -27,7 +39,11 @@ class CategoriasController extends Controller
      */
     public function create()
     {
-        //
+        if(Gate::denies('administrador'))
+        {
+            return redirect()->route('categorias.index');
+        }
+        return view('categorias.insert');
     }
 
     /**
@@ -38,7 +54,11 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nombre = $request->nombre;
+
+        Categorias::create($request->all());
+
+        return redirect()->route('categorias.index')->with('exito', '¡La categoria se a creado satisfactoriamente!');
     }
 
     /**
@@ -50,7 +70,7 @@ class CategoriasController extends Controller
     public function show($id)
     {
         $categorias = Categorias::findOrFail($id);
-        $products = Products::where('categorias_id',$id)
+        $products = Products::where('categoria_id',$id)
                                             ->orderBy('nombre','asc')
                                             ->get();
         return view('categorias.show', compact('categorias', 'products'));
@@ -62,9 +82,14 @@ class CategoriasController extends Controller
      * @param  \App\Models\Categorias  $categorias
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categorias $categorias)
+    public function edit( $id)
     {
-        //
+        if(Gate::denies('administrador'))
+        {
+            return redirect()->route('categorias.index');
+        }
+        $categorias = Categorias::findOrFail($id);
+        return view('categorias.edit', compact('categorias'));
     }
 
     /**
@@ -74,9 +99,17 @@ class CategoriasController extends Controller
      * @param  \App\Models\Categorias  $categorias
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categorias $categorias)
+    public function update(Request $request, $id) //depues de la coma: Categorias $categorias
     {
-        //
+        $categorias = Categorias::findOrFail($id);
+        //Metodo 1
+        // $proyecto->nombre = $request->nombre;
+        // $proyecto->duracion = $request->duracion;
+        // $proyecto->save();
+
+        //metodo 2
+        $categorias->update($request->all());
+        return redirect()->route('categorias.index')->with('exito', '¡El cambio se ha echo satisfactoriamente!');
     }
 
     /**
@@ -85,8 +118,14 @@ class CategoriasController extends Controller
      * @param  \App\Models\Categorias  $categorias
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categorias $categorias)
+    public function destroy($id)
     {
-        //
+        if(Gate::denies('administrador'))
+        {
+            return redirect()->route('categorias.index');
+        }
+        $categorias = Categorias::findOrFail($id);
+        $categorias->delete();
+        return redirect()->route('categorias.index');
     }
 }

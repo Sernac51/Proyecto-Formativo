@@ -3,20 +3,22 @@
 @section('titulo', 'Productos')
 
 @section('content')
-
-    @if($mensaje = Session::get('exito'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <p>{{ $mensaje }}</p>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+    @if($query)
+    <div class="alert alert-primary" role="alert">
+        <p>A continuación se presentan los resultados de la búsqueda <span class="fw-bold">{{$query}}</span></p>
+    </div>
     @endif
-    {{-- @can(['administrador']) --}}
+    @if($mensaje = Session::get('exito'))
+    <div class="alert alert-success alert-dismissible fade show " role="alert">
+        <p>{{ $mensaje }}</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
         <div class="mt-3">
             <a href="{{ route('products.create') }}" class="btn btn-dark">
                 Registrar nuevo producto
             </a>
         </div>
-    {{-- @endcan --}}
 
     <div class="my-3">
         @if(count($products) > 0)

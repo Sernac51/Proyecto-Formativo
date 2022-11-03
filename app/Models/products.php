@@ -11,6 +11,6 @@ class products extends Model
         'nombre',
         'precio',
         'Cantidad',
-        'categorias_id'
+        'categoria_id'
     ];
 }
