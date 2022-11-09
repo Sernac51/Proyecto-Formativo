@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Abastecimiento;
+use App\Models\products;
 use Illuminate\Http\Request;
 
 class AbastecimientoController extends Controller
@@ -14,9 +15,11 @@ class AbastecimientoController extends Controller
      */
     public function index()
     {
-        //
+        //consultar productos
+        $products = Products::orderBy('nombre', 'asc')
+                                ->get();
+        return view('abastecimiento.index', compact('products'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +38,19 @@ class AbastecimientoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $datosAbastecimiento = $request->except('_token');
+        // Products::insert($datosAbastecimiento);
+ 
+        // return redirect()->route('abastecimiento.index')->with('exito', '¡El registro se ha creado satisfactoriamente!');
+
+        // $products_id = $request->products_id;
+        // $cantidad_id= $request->cantidad;
+        // $valor = $request->valor;
+
+        // Abastecimiento::create($request->all());
+
+
+        // return redirect()->route('abastecimiento.index');
     }
 
     /**
@@ -67,9 +82,23 @@ class AbastecimientoController extends Controller
      * @param  \App\Models\Abastecimiento  $abastecimiento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Abastecimiento $abastecimiento)
+    public function update(Request $request, $id)
     {
-        //
+        // $abastecimiento = Abastecimiento::findOrFail($id);   
+        // $datosAbastecimiento = $request->except(['_token','_method']);
+
+        // Products::where('id',$id)->update($datosAbastecimiento);
+        // return redirect()->route('abastecimiento.index')->with('exito', '¡El registro se ha actualizado satisfactoriamente!');
+
+        // $abastecimiento = Abastecimiento::findOrFail($id);
+        //Metodo 1
+        // $proyecto->nombre = $request->nombre;
+        // $proyecto->duracion = $request->duracion;
+        // $proyecto->save();
+
+        //metodo 2
+        // $abastecimiento->update($request->all());
+        // return redirect()->route('abastecimiento.index');
     }
 
     /**

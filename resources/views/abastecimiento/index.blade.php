@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('titulo', 'Venta')
+@section('titulo', 'Abastecimiento')
 
 @section('content')
     @if($mensaje = Session::get('exito'))
@@ -15,40 +15,33 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Cantidad</th>
-                    <th>Valor unitario</th>
-                    <th>Subtotal</th>
+                    <th>Valor </th>
                 </tr>
             </thead>
             <tbody>
-                <form action="{{ route('products.store') }}" method="post" class="needs-validation" novalidate>
+                <form action="{{ route('abastecimiento.store') }}" method="post" class="needs-validation" novalidate>
                     @csrf
-                    <td class="col-3">  
-                        <div class="form-floating mb-3">
-                            <select class="form-select" id="products_id" name="products_id" required>
-                                <option selected >Selecione...</option>
-                                @foreach($products as $item)
-                                <option value="{{ $item->id }}">{{ $item->nombre }}</option>
-                                @endforeach
-                            </select>
-                            <label for="products_id">Nombre</label>
-                        </div>
+                    <td class="col-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="products_id" name="products_id" required>
+                            <option selected >Selecione...</option>
+                            @foreach($products as $item)
+                            <option value="{{ $item->id }}">{{ $item->nombre }}</option>
+                            @endforeach
+                        </select>
+                        <label for="products_id">Nombre</label>
+                    </div>
                     </td>
                     <td class="col-3">
                         <div class="form-floating mb-2">
-                            <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Cantidad">
-                            <label for="cantidad">Cantidad</label>
+                            <input type="number" class="form-control" id="cantidad_id" name="cantidad_id" placeholder="Cantidad">
+                            <label for="cantidad_id">Cantidad</label>
                         </div>
                     </td>
                     <td class="col-3">  
                         <div class="form-floating mb-3">
-                            <input type="number" class="form-control" id="precio_unitario" name="precio_unitario" placeholder="Precio" disabled>
-                            <label for="precio_unitario">Precio</label>
-                        </div>
-                    </td>
-                    <td class="col-3">  
-                        <div class="form-floating mb-3">
-                            <input type="number" class="form-control" id="subtotal" name="subtotal" placeholder="Subtotal" disabled>
-                            <label for="subtotal">Subtotal</label>
+                            <input type="number" class="form-control" id="precio_unitario" name="precio_unitario" placeholder="Precio" >
+                            <label for="precio_unitario">Valor</label>
                         </div>
                     </td>
                 </form>

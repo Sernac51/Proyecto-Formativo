@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\products;
 use App\Models\ventas;
 use Illuminate\Http\Request;
 
@@ -12,16 +13,18 @@ class VentasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request)
-        {
-            $query = $request->buscar;
-            $ventas = Ventas::where('id')
-                                    ->orderBy('id');
-            return view('ventas.index', compact('ventas','query'));
-        }
-        return view('ventas.index', compact('ventas'));
+        $ventas = Ventas::join('products','products.categoria_id','products.id')
+                            ->select('products.id','products.nombre', 
+                            'products.precio', 'products.Cantidad',
+                            'categorias.nombre as categorias')
+                            ->where('products.id',$id)
+                            ->first();
+        //consultar productos
+        $products = Products::orderBy('nombre', 'asc')
+                                ->get();
+        return view('ventas.index', compact('products'));
     }
 
     /**

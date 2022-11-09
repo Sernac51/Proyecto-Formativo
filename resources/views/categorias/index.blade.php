@@ -37,12 +37,14 @@
                         <td>{{ $item->nombre}}</td>
                         <td class="d-flex">
                             <a href="{{ route('categorias.show', $item->id) }}" class="btn btn-info justify-content-start me-1 rounded-circle"><i class="fa-solid fa-eye"></i></a>
+                        @can(['administrador'])
                             <a href="{{ route('categorias.edit', $item->id) }}" class="btn btn-warning justify-content-start me-1 rounded-circle"><i class="fa-solid fa-pen-to-square"></i></a>
                             <form action="{{ route('categorias.destroy', $item->id) }}" method="post" class="justify-content-start form-delete">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger rounded-circle"><i class="fa-solid fa-trash-can"></i></button>
                             </form>
+                        @endcan
                         </td>
                     </tr>
                 @endforeach

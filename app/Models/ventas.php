@@ -9,7 +9,7 @@ class ventas extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nombre',
+        'products_id',
         'cantidad',
         'subtotal'
     ];

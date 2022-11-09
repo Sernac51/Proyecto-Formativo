@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use App\Models\products;
 use App\Models\Categorias;
+use App\Models\Abastecimiento;
 use Illuminate\Http\Request;
 use Gate;
 
@@ -76,10 +77,6 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        if(Gate::denies('administrador'))
-        {
-            return redirect()->route('products.index');
-        }
         $products = Products::join('categorias','products.categoria_id','categorias.id')
                                             ->select('products.id','products.nombre', 
                                             'products.precio', 'products.Cantidad',
@@ -87,7 +84,12 @@ class ProductsController extends Controller
                                             ->where('products.id',$id)
                                             ->first();
         return view('products.show', compact('products'));
-    
+        $ventas = Ventas::join('products','ventas.categoria_id','products.id')
+                        ->select('products.id','products.nombre', 
+                        'products.precio', 'products.Cantidad',
+                        'categorias.nombre as categorias')
+                        ->where('products.id',$id)
+                        ->first();
    
     }
 

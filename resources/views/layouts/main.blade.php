@@ -36,14 +36,15 @@
                         <li>
                             <a class="dropdown-item rounded mb-2" href="{{ route('products.index') }}">Productos</a>
                         </li>
-                        <a class="dropdown-item rounded mb-2" href="{{ route('ventas.index') }}">Ventas</a>
-                        <!-- @can(['administrador']) -->
+                        <a class="dropdown-item rounded mb-2" href="{{ route('ventas.index') }}">Venta</a>
                         <li>
-                            <a class="dropdown-item rounded mb-2" href="{{ route('usuarios.index') }}">Usuarios</a>
-                        </li>
-                         <!-- @endcan -->  
-                         <li>
+                            <a class="dropdown-item rounded mb-2" href="{{ route('abastecimiento.index') }}">Abastecimiento</a>
                         </li>                       
+                        @can(['administrador']) 
+                            <li>
+                                <a class="dropdown-item rounded mb-2" href="{{ route('usuarios.index') }}">Usuarios</a>
+                            </li>
+                        @endcan 
                     </ul>
                 </div>
                 <li class="navbar nav-item btn-group dropup  ms-3">
