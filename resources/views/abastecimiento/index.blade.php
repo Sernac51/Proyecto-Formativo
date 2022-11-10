@@ -40,14 +40,16 @@
                     </td>
                     <td class="col-3">  
                         <div class="form-floating mb-3">
-                            <input type="number" class="form-control" id="precio_unitario" name="precio_unitario" placeholder="Precio" >
-                            <label for="precio_unitario">Valor</label>
+                            <input type="number" class="form-control" id="valor" name="valor" placeholder="Precio" >
+                            <label for="valor">Valor</label>
                         </div>
                     </td>
+                    <tr>
+                        <button type="submit" class="btn btn-secondary">Guardar</button>
+                    </tr>
                 </form>
             </tbody>
         </table>
-        <button type="submit" class="btn btn-secondary">Guardar</button>
     </div>
 @endsection
 

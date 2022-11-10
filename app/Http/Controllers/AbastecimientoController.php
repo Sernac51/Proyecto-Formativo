@@ -27,7 +27,7 @@ class AbastecimientoController extends Controller
      */
     public function create()
     {
-        //
+        return view('abastecimiento.index');
     }
 
     /**
@@ -38,19 +38,15 @@ class AbastecimientoController extends Controller
      */
     public function store(Request $request)
     {
-        // $datosAbastecimiento = $request->except('_token');
-        // Products::insert($datosAbastecimiento);
- 
-        // return redirect()->route('abastecimiento.index')->with('exito', '¡El registro se ha creado satisfactoriamente!');
-
-        // $products_id = $request->products_id;
-        // $cantidad_id= $request->cantidad;
-        // $valor = $request->valor;
-
-        // Abastecimiento::create($request->all());
-
-
-        // return redirect()->route('abastecimiento.index');
+       
+        Abastecimiento::create($request->all());
+        $producto = Products::findOrFail($request->products_id);
+        $cantidadActual = $producto->Cantidad;
+        $cantidadNueva = $cantidadActual + $request->cantidad_id;
+        $producto->Cantidad = $cantidadNueva;
+        $producto->save();
+        // dd($cantidadNueva);
+        return redirect()->route('abastecimiento.index')->with('exito', '¡El registro se ha actualizado satisfactoriamente!');
     }
 
     /**
@@ -84,21 +80,7 @@ class AbastecimientoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $abastecimiento = Abastecimiento::findOrFail($id);   
-        // $datosAbastecimiento = $request->except(['_token','_method']);
-
-        // Products::where('id',$id)->update($datosAbastecimiento);
-        // return redirect()->route('abastecimiento.index')->with('exito', '¡El registro se ha actualizado satisfactoriamente!');
-
-        // $abastecimiento = Abastecimiento::findOrFail($id);
-        //Metodo 1
-        // $proyecto->nombre = $request->nombre;
-        // $proyecto->duracion = $request->duracion;
-        // $proyecto->save();
-
-        //metodo 2
-        // $abastecimiento->update($request->all());
-        // return redirect()->route('abastecimiento.index');
+        
     }
 
     /**
