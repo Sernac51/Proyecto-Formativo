@@ -104,7 +104,6 @@ class CategoriasController extends Controller
         $categorias = Categorias::findOrFail($id);
         //Metodo 1
         // $proyecto->nombre = $request->nombre;
-        // $proyecto->duracion = $request->duracion;
         // $proyecto->save();
 
         //metodo 2

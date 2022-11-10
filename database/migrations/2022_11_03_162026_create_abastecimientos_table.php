@@ -16,7 +16,7 @@ class CreateAbastecimientosTable extends Migration
         Schema::create('abastecimientos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('products_id')->constrained('products');
-            $table->foreignId('cantidad_id');
+            $table->integer('cantidad_id');
             $table->double('valor',8,2);
             $table->timestamps();
         });
@@ -31,9 +31,6 @@ class CreateAbastecimientosTable extends Migration
     {
         Schema::table('abastecimientos', function (Blueprint $table) {
             $table->dropForeign('abastecimientos_products_id_foreign');
-        });
-        Schema::table('abastecimientos', function (Blueprint $table) {
-            $table->dropForeign('abastecimientos_cantidad_id_foreign');
         });
         Schema::dropIfExists('abastecimientos');
     }

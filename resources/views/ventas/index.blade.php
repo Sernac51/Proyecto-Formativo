@@ -41,7 +41,7 @@
                     </td>
                     <td class="col-3">  
                         <div class="form-floating mb-3">
-                            <input type="number" class="form-control" id="precio_unitario" name="precio_unitario" placeholder="Precio" disabled>
+                            <input type="number" class="form-control" id="precio_unitario" name="precio_unitario" placeholder="Precio">
                             <label for="precio_unitario">Precio</label>
                         </div>
                     </td>
@@ -51,10 +51,10 @@
                             <label for="subtotal">Subtotal</label>
                         </div>
                     </td>
+                    <button type="submit" class="btn btn-secondary">Guardar</button>
                 </form>
             </tbody>
         </table>
-        <button type="submit" class="btn btn-secondary">Guardar</button>
     </div>
 @endsection
 

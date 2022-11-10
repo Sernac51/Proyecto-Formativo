@@ -84,12 +84,6 @@ class ProductsController extends Controller
                                             ->where('products.id',$id)
                                             ->first();
         return view('products.show', compact('products'));
-        $ventas = Ventas::join('products','ventas.categoria_id','products.id')
-                        ->select('products.id','products.nombre', 
-                        'products.precio', 'products.Cantidad',
-                        'categorias.nombre as categorias')
-                        ->where('products.id',$id)
-                        ->first();
    
     }
 
@@ -116,6 +110,7 @@ class ProductsController extends Controller
      */
     public function update( Request $request, $id)
     {
+        
         $products = Products::findOrFail($id);   
         $datosProducts = $request->except(['_token','_method']);
 
