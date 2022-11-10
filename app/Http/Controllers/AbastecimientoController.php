@@ -15,10 +15,11 @@ class AbastecimientoController extends Controller
      */
     public function index()
     {
+        
         //consultar productos
         $products = Products::orderBy('nombre', 'asc')
-                                ->get();
-        return view('abastecimiento.index', compact('products'));
+                                ->get('');
+        return view('abastecimiento.index', compact('products', '$products1'));
     }
     /**
      * Show the form for creating a new resource.
@@ -61,7 +62,7 @@ class AbastecimientoController extends Controller
      */
     public function show(Abastecimiento $abastecimiento)
     {
-        //
+        
     }
 
     /**

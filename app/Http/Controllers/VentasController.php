@@ -15,15 +15,11 @@ class VentasController extends Controller
      */
     public function index()
     {
-        $ventas = Ventas::join('products','products.categoria_id','products.id')
-                            ->select('products.id','products.nombre', 
-                            'products.precio', 'products.Cantidad',
-                            'categorias.nombre as categorias')
-                            ->where('products.id',$id)
-                            ->first();
-        //consultar productos
+        
+        // consultar productos
         $products = Products::orderBy('nombre', 'asc')
                                 ->get();
+       
         return view('ventas.index', compact('products'));
     }
 

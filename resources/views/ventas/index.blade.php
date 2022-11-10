@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('titulo', 'Venta')
-
 @section('content')
     @if($mensaje = Session::get('exito'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -41,8 +40,13 @@
                     </td>
                     <td class="col-3">  
                         <div class="form-floating mb-3">
-                            <input type="number" class="form-control" id="precio_unitario" name="precio_unitario" placeholder="Precio" disabled>
-                            <label for="precio_unitario">Precio</label>
+                                @foreach($products as $item)  
+                                    <script>
+                                        
+                                    </script>
+                                    <input type="text" class="form-control" id="precio" name="precio" placeholder="precio" value="{{ $item->id}}>{{ $item->precio}}" disabled>
+                                @endforeach
+                            <label for="products_id">precio</label>
                         </div>
                     </td>
                     <td class="col-3">  
@@ -82,4 +86,5 @@
     });
 </script>
 
-@endsection
+@endsection 
+
