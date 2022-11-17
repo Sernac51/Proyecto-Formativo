@@ -83,7 +83,13 @@ class ProductsController extends Controller
                                             'categorias.nombre as categorias')
                                             ->where('products.id',$id)
                                             ->first();
-        return view('products.show', compact('products'));
+        //
+        $abastecimiento = Abastecimiento::where('products_id', $id)
+                                            ->orderBy('created_at','desc')
+                                            ->first();
+        //
+        //dd($abastecimiento);
+        return view('products.show', compact('products', 'abastecimiento', ));
         
    
     }

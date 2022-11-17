@@ -26,7 +26,8 @@
                     </tr>
                     <tr>
                         <td class="fw-bold">Precio Abastecimiento</td>
-                        <td>{{ $products->categorias}}</td>
+                        <td>{{$abastecimiento->valor}}</td>
+                        
                     </tr>
                 </tbody>
             </table>
