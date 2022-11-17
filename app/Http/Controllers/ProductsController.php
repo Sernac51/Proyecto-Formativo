@@ -116,6 +116,13 @@ class ProductsController extends Controller
 
         Products::where('id',$id)->update($datosProducts);
         return redirect()->route('products.index')->with('exito', '¡El registro se ha actualizado satisfactoriamente!');
+        $products = Products::join('categorias','products.categoria_id','categorias.id')
+                                            ->select('products.id','products.nombre', 
+                                            'products.precio', 'products.Cantidad',
+                                            'categorias.nombre as categorias')
+                                            ->where('products.id',$id)
+                                            ->first();
+        return view('products.show', compact('products'));
     }
 
     /**
