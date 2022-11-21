@@ -49,7 +49,7 @@ class ProductsController extends Controller
         }
         //consultar categorias
         $categorias = Categorias::orderBy('nombre', 'asc')
-                            ->get();
+                                    ->get();
         //enviar a la vist
         return view('products.insert', compact('categorias'));
         

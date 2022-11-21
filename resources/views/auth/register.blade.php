@@ -1,9 +1,20 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+             <div class="container mt-5">
+                <style type="text/css">
+                    #aj {color:#FFAB4A;
+                        font-size: 100px;
+                        margin: -18px }
+                    #al{
+                        font-size: 30px;
+                        color: white;
+                    }
+                    
+                   </style>
+            <h1 class="text-center fs-1" id="aj" >AJ</h1>
+            <h1 class="text-center fs-3 "id="al" >Aluminio y decoración</h1>
+        </div>
         </x-slot>
 
         <!-- Validation Errors -->
@@ -50,7 +61,7 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-button class="ml-4">
+                <x-button class="ml-4 ">
                     {{ __('Register') }}
                 </x-button>
             </div>

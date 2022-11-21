@@ -1,9 +1,18 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+                <style type="text/css">
+                    #aj {color:#FFAB4A;
+                        font-size: 100px;
+                        margin: -18px }
+                    #al{
+                        font-size: 30px;
+                        color: white;
+                    }
+                    
+                   </style>
+            <h1 class="text-center fs-1" id="aj" >AJ</h1>
+            <h1 class="text-center fs-3 "id="al" >Aluminio y decoración</h1>
         </x-slot>
 
         <!-- Session Status -->
@@ -14,7 +23,6 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
-            usuarios
             <!-- Email Address -->
             <div>
                 <x-label for="email" :value="__('Email')" />
@@ -41,22 +49,17 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-3">
-                    {{ __('Login') }}
-                </x-button>
-            </div>
-            <div class="mt-4">
-                ¿No está registrado?
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+               ¿No está registrado?
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 ml-2" href="{{ route('register') }}">
                     {{ __('Regístrese') }}
                 </a>
+
+
+            <x-button class="ml-4">
+                {{ __('Login') }}
+            </x-button>
             </div>
+           
         </form>
     </x-auth-card>
 </x-guest-layout>
